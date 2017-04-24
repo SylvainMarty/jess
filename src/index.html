@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>J.E.S.S.</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/static/css/style.css">
+  </head>
+  <body>
+      <div class="container-fluid">
+        <h1>J.E.S.S.</h1>
+
+        <p class="help-block">
+            Welcome on J.E.S.S., the Jekyll Embedded Simple Server !
+        </p>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <a href="http://localhost:4000" id="jekyll-browser-access" style="display:none; margin-top: 30px;" class="btn btn-info btn-block"><i class="fa fa-open"></i>&nbsp; Open in browser</a>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 15px; margin-bottom: 30px;">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                        <div class="form-group" id="jekyll-directory-input-wrapper">
+                            <label for="jekyll-directory-input"></label>
+                            <input class="form-control" type="file" webkitdirectory directory id="jekyll-directory-input"/>
+                            <p class="help-block">Select the root directory of your Jekyll project.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                        <button id="start-jekyll-btn" style="display: block;" title="Start Jekyll" class="btn btn-success btn-block"><i class="fa fa-power-off"></i>&nbsp; Start Jekyll</button>
+                        <button id="stop-jekyll-btn" style="display: none;" title="Stop Jekyll" class="btn btn-danger btn-block"><i class="fa fa-power-off"></i>&nbsp; Stop Jekyll</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Logs</h2>
+        <div class="hightlight">
+            <ul id="jekyll-logs"></ul>
+        </div>
+
+        <!-- <p class="help-block" style="position: absolute; left: 15px; right: 15px; bottom: 0;"> -->
+        <p class="help-block">
+            Node.js <script>document.write(process.versions.node)</script>,
+            Chromium <script>document.write(process.versions.chrome)</script>,
+            Electron <script>document.write(process.versions.electron)</script>.
+        </p>
+      </div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./src/renderer.js')
+  </script>
+</html>
