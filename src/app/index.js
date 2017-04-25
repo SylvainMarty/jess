@@ -1,16 +1,15 @@
-const child_process = require('child_process');
 const path = require('path');
 const shell = require('electron').shell;
-const properties = require("../config.json");
-const Embedded = require("./Embedded.js");
-const Logs = require("./modules/Logs.js");
+// const remote = require('electron').remote;
+const Logs = require("../modules/Logs.js");
+var Jekyll = require("../modules/Jekyll.js");
 
 
 /**
  * @Vars
  */
 
-var jekyll,
+var jekyll = new Jekyll(),
     jekyllStartBtn = document.getElementById("start-jekyll-btn"),
     jekyllStopBtn = document.getElementById("stop-jekyll-btn"),
     jekyllLogsCtnr = document.getElementById("jekyll-logs"),
@@ -40,8 +39,9 @@ jekyllDirectoryInput.addEventListener('change', function(event){
  */
 function startJekyllFn() {
     if(jekyllDirectory) {
-        var binaries = properties.jekyll.binExecPath.replace("{binaryName}", Embedded());
-        jekyll = child_process.spawn("./"+binaries, ['serve', '-s', jekyllDirectory, '-d', jekyllDirectory+"/_site"]);
+        // var binaries = properties.jekyll.binExecPath.replace("{binaryName}", Embedded());
+        // jekyll = child_process.spawn("./"+binaries, ['serve', '-s', jekyllDirectory, '-d', jekyllDirectory+"/_site"]);
+        jekyll.serve(jekyllDirectory);
         jekyllLogsCtnr.innerHTML = "";
 
         hideElement(jekyllStartBtn);
@@ -51,7 +51,7 @@ function startJekyllFn() {
 
         Logs.info('Starting Jekyll server.');
 
-        jekyll.on('close', (code) => {
+        jekyll.process.on('close', (code) => {
             hideElement(jekyllStopBtn);
             hideElement(jekyllAccessLink);
             displayElement(jekyllStartBtn);
@@ -63,11 +63,11 @@ function startJekyllFn() {
             }
         });
 
-        jekyll.stdout.on('data', (data) => {
+        jekyll.process.stdout.on('data', (data) => {
             Logs.write(data.toString());
         });
 
-        jekyll.on('error', (err) => {
+        jekyll.process.on('error', (err) => {
             hideElement(jekyllStopBtn);
             hideElement(jekyllAccessLink);
             displayElement(jekyllStartBtn);
@@ -80,9 +80,8 @@ function startJekyllFn() {
 }
 
 function stopJekyllFn() {
-    if(jekyll) {
-        jekyll.kill('SIGINT');
-        jekyll = null;
+    if(jekyll.process) {
+        jekyll.stop();
 
         hideElement(jekyllStopBtn);
         hideElement(jekyllAccessLink);

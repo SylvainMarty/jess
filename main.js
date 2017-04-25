@@ -3,7 +3,7 @@ const electron = require('electron');
 const fs = require("fs");
 const path = require('path');
 const url = require('url');
-const properties = require("./config.json");
+const properties = require("./src/properties.json");
 
 // Module to control application life.
 var app = electron.app;
@@ -36,7 +36,7 @@ function createWindow () {
     }))
 
     // Open the DevTools.
-    // global.mainWindow.webContents.openDevTools()
+    global.mainWindow.webContents.openDevTools()
 
     // Emitted when the window is closed.
     global.mainWindow.on('closed', function () {

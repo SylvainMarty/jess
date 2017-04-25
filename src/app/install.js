@@ -2,13 +2,13 @@ const fs = require("fs");
 const path = require('path');
 const url = require('url');
 const targz = require("targz");
-const properties = require("../config.json");
-const Logs = require("./modules/Logs.js");
-const _DIR_ = __dirname + "/../";
+const properties = require("../properties.json");
+const Logs = require("../modules/Logs.js");
+const _ROOT_ = __dirname + "/../../";
 var remote = require('electron').remote;
 
 var logContainer = document.getElementById("install-logs"),
-    binRootPath = path.join(_DIR_, properties.jekyll.binRootPath);
+    binRootPath = path.join(_ROOT_, properties.jekyll.binRootPath);
 Logs.setLogContainer(logContainer);
 
 if (!fs.existsSync(binRootPath)) {
@@ -32,8 +32,8 @@ if (!fs.existsSync(binRootPath)) {
 
                 // decompress files from tar.gz archive
                 targz.decompress({
-                    src: path.join(_DIR_, archive),
-                    dest: path.join(_DIR_, properties.jekyll.binRootPath)
+                    src: path.join(_ROOT_, archive),
+                    dest: path.join(_ROOT_, properties.jekyll.binRootPath)
                 }, function(err){
                     if(err) {
                         Logs.danger("Something goes wrong: " + err.stack);
@@ -64,7 +64,7 @@ if (!fs.existsSync(binRootPath)) {
         Logs.success("Installation done ! Redirecting...");
         setTimeout(function(){
             remote.getGlobal('mainWindow').loadURL(url.format({
-                pathname: path.join(_DIR_, "index.html"),
+                pathname: path.join(_ROOT_, "index.html"),
                 protocol: 'file:',
                 slashes: true
             }));
