@@ -40,7 +40,7 @@ jekyllDirectoryInput.addEventListener('change', function(event){
  */
 function startJekyllFn() {
     if(jekyllDirectory) {
-        var binaries = properties.jekyll.binExecPath.replace("{os}", Embedded());
+        var binaries = properties.jekyll.binExecPath.replace("{binaryName}", Embedded());
         jekyll = child_process.spawn("./"+binaries, ['serve', '-s', jekyllDirectory, '-d', jekyllDirectory+"/_site"]);
         jekyllLogsCtnr.innerHTML = "";
 

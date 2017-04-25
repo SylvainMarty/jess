@@ -1,12 +1,12 @@
 const remote = require('electron').remote;
-const JEKYLL_T_NAME = "travelling-jekyll";
+const JEKYLL_T_NAME = "traveling-jekyll";
 const JEKYLL_T_VERSION = "3.1.2b";
 
 
-export = Embedded;
+module.exports = Embedded;
 
 function Embedded() {
-    return JEKYLL_T_NAME + "-" + JEKYLL_T_VERSION + getSystemName();
+    return JEKYLL_T_NAME + "-" + JEKYLL_T_VERSION + "-" + getSystemName();
 }
 
 function getSystemName() {
@@ -30,4 +30,5 @@ function getSystemName() {
             }
             break;
     }
+    return osName;
 }
