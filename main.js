@@ -12,8 +12,11 @@ var BrowserWindow = electron.BrowserWindow;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-// let mainWindow;
 global.mainWindow = null;
+global.os = {
+    platform: process.platform, // 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
+    arch: process.arch // 'arm', 'ia32', or 'x64'
+};
 
 function createWindow () {
     // Create the browser window.

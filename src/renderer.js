@@ -2,6 +2,7 @@ const child_process = require('child_process');
 const path = require('path');
 const shell = require('electron').shell;
 const properties = require("../config.json");
+const Embedded = require("./Embedded.js");
 const Logs = require("./modules/Logs.js");
 
 
@@ -39,7 +40,7 @@ jekyllDirectoryInput.addEventListener('change', function(event){
  */
 function startJekyllFn() {
     if(jekyllDirectory) {
-        var binaries = properties.jekyll.binExecPath.replace("{os}", "osx");
+        var binaries = properties.jekyll.binExecPath.replace("{os}", Embedded());
         jekyll = child_process.spawn("./"+binaries, ['serve', '-s', jekyllDirectory, '-d', jekyllDirectory+"/_site"]);
         jekyllLogsCtnr.innerHTML = "";
 
