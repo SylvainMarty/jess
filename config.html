@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>J.E.S.S. Configuration</title>
+
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="src/static/css/style.css">
+    </head>
+    <body>
+        <div id="app">
+
+            <div class="container-fluid">
+                <h1>Configuration</h1>
+                <p class="help-block">
+                    {{ message }}
+                </p>
+
+                <form id="jekyll-conf-form">
+                    <div class="form-group">
+                        <label for="jekyll-conf-host">Host</label>
+                        <input type="text" class="form-control" id="jekyll-conf-host" v-model="conf.host" :disabled="!conf.host">
+                    </div>
+                    <button type="button" @click="save()" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+
+        </div>
+    </body>
+
+    <script>
+    // You can also require other files to run in this process
+    require('./src/app/config.js')
+    </script>
+</html>

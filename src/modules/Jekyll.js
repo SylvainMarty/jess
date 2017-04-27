@@ -26,18 +26,49 @@ function Jekyll() {
  */
 
 Jekyll.prototype.getConfig = function() {
-    return local.config;
+    return new Promise(
+        function(resolve, reject) {
+            var interval = 1000,
+                ttl = 15000;
+            var timer = setInterval(function() {
+                if(ttl <= 0) {
+                    clearInterval(timer);
+                    reject();
+                }
+                if(local.config != null) {
+                    clearInterval(timer);
+                    resolve(local.config);
+                } else {
+                    ttl -= interval;
+                }
+            }, interval);
+        }
+    );
 }
 
-Jekyll.prototype.configure = function(key, value, callback){
-    local.config[key] = value;
-    fs.writeFile(JEKYLL_CONF_FILE, JSON.stringify(local.config, null, 2), function(err) {
-        if (err) {
-            console.error('Error while writing new Jekyll serialized configuration.', err);
-            return callback(null);
+Jekyll.prototype.configure = function(newConf){
+    return new Promise(
+        function(resolve, reject) {
+            var interval = 1000,
+                ttl = 20000;
+
+            fs.writeFile(JEKYLL_CONF_FILE, JSON.stringify(newConf, null, 4), function(err) {
+                if (err) {
+                    console.error('Error while writing new Jekyll serialized configuration.', err);
+                    reject(err);
+                }
+                resolve(newConf);
+            });
+
+            var timer = setInterval(function() {
+                if(ttl <= 0) {
+                    clearInterval(timer);
+                    reject();
+                }
+                ttl -= interval;
+            }, interval);
         }
-        callback(local.config);
-    });
+    );
 };
 
 Jekyll.prototype.serve = function(directory) {
