@@ -4,6 +4,8 @@ embedded/*
 packaging/*/*.tar.gz
 !packaging/.gitkeep
 !packaging/*/.gitkeep
+compiled/*
+!compiled/.gitkeep
 
 # OS generated files #
 ######################

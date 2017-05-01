@@ -36,7 +36,6 @@ var app = new Vue({
  * @Functions
  */
 function startJekyllFn() {
-    console.log("Starting jekyll server")
     if(this.jekyllDirectory) {
         jekyll.serve(this.jekyllDirectory);
         this.logs = [];

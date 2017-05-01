@@ -1,0 +1,43 @@
+/**
+ * @Navigation
+ */
+.nav {
+
+}
+
+
+/**
+ * @Logs hightlight
+ */
+.hightlight {
+    background-color: #49483E;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 3px;
+    color: #FFFFFF;
+
+    li {
+        color: #fbfbfb;
+
+        &.error {
+            color: #f44336;
+        }
+
+        &.info {
+            color: #03a9f4;
+        }
+
+        &.success {
+            color: #4caf50;
+        }
+
+        &.warn {
+            color: #ffc107;
+        }
+    }
+
+    ul {
+        padding-left: 0;
+        list-style-type: none;
+    }
+}

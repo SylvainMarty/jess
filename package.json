@@ -4,7 +4,8 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build-css": "node-sass --include-path scss ./src/scss/style.scss ./compiled/style.css"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -23,6 +24,7 @@
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
     "jquery": "^1.12.4",
+    "node-sass": "^4.5.2",
     "tar": "^2.2.1",
     "targz": "^1.0.1",
     "vue": "^2.3.0"
