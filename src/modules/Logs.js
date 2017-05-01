@@ -1,13 +1,3 @@
-var logContainer = null;
-
-exports.setLogContainer = function(newContainer) {
-    logContainer = newContainer;
-}
-
-exports.getLogContainer = function() {
-    return logContainer;
-}
-
 exports.info = function(message) {
     return exports.write(message, "info");
 }
@@ -25,11 +15,7 @@ exports.danger = function(message) {
 }
 
 exports.write = function(message, status) {
-    var output = placeholderByStatus(status).replace("{msg}", message);
-    if(logContainer) {
-        logContainer.innerHTML += output;
-    }
-    return output;
+    return placeholderByStatus(status).replace("{msg}", message);
 }
 
 function placeholderByStatus(status) {

@@ -9,16 +9,20 @@
     <link rel="stylesheet" href="src/static/css/style.css">
   </head>
   <body>
-      <div class="container-fluid">
-        <h1>Installation...</h1>
+      <div id="app">
+          <div class="container-fluid">
+            <h1>Installation...</h1>
 
-        <p class="help-block">
-            We are installing J.E.S.S., please wait.
-        </p>
-
-        <div class="hightlight">
-            <ul id="install-logs"></ul>
-        </div>
+            <p class="help-block">
+                We are installing J.E.S.S., please wait.
+            </p>
+            
+            <div class="hightlight">
+                <ul>
+                    <li v-for="(log,key) in logs" v-html="log"></li>
+                </ul>
+            </div>
+          </div>
       </div>
   </body>
 
