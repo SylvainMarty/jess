@@ -9,26 +9,27 @@ exports.getLogContainer = function() {
 }
 
 exports.info = function(message) {
-    exports.write(message, "info");
+    return exports.write(message, "info");
 }
 
 exports.success = function(message) {
-    exports.write(message, "success");
+    return exports.write(message, "success");
 }
 
 exports.warn = function(message) {
-    exports.write(message, "warn");
+    return exports.write(message, "warn");
 }
 
 exports.danger = function(message) {
-    exports.write(message, "danger");
+    return exports.write(message, "danger");
 }
 
 exports.write = function(message, status) {
-    if(!logContainer) {
-        throw "No log container found.";
+    var output = placeholderByStatus(status).replace("{msg}", message);
+    if(logContainer) {
+        logContainer.innerHTML += output;
     }
-    logContainer.innerHTML += placeholderByStatus(status).replace("{msg}", message);
+    return output;
 }
 
 function placeholderByStatus(status) {

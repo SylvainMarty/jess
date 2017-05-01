@@ -87,8 +87,8 @@ Jekyll.prototype.stop = function() {
 function buildArgs(directory) {
     var args = ["serve", "-s", directory, "-d", directory+"/_site"];
     Object.keys(local.config).forEach(function(arg){
-        args.put("--"+arg);
-        args.put("--"+local.config[arg]);
+        args.push("--"+arg);
+        args.push(local.config[arg]);
     });
     return args;
 }
