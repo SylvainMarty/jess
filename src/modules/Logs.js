@@ -31,7 +31,7 @@ function placeholderByStatus(status) {
             placeholder = '<li class="warn"><i class="fa fa-exclamation"></i>&nbsp; {msg}</li>';
             break;
         case "danger":
-            placeholder = '<li class="danger"><i class="fa fa-time"></i>&nbsp; {msg}</li>';
+            placeholder = '<li class="danger"><i class="fa fa-close"></i>&nbsp; {msg}</li>';
             break;
         default:
             placeholder = '<li>{msg}</li>';
