@@ -1,6 +1,7 @@
 // dependencies
 const electron = require('electron');
-const fs = require("fs");
+const {ipcMain} = require('electron');
+const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const properties = require("./src/properties.json");
@@ -9,6 +10,7 @@ const properties = require("./src/properties.json");
 var app = electron.app;
 // Module to create native browser window.
 var BrowserWindow = electron.BrowserWindow;
+let childsPID = [];
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -47,6 +49,12 @@ function createWindow () {
     })
 }
 
+
+/**
+ * @Events
+ * App global events
+ */
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -61,10 +69,28 @@ app.on('window-all-closed', function () {
     }
 });
 
+app.on('before-quit', function () {
+    childsPID.forEach(function(pid) {
+        console.log(`Killing process with PID ${pid}`);
+        process.kill(pid, 'SIGINT');
+    });
+});
+
 app.on('activate', function () {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (global.mainWindow === null) {
         createWindow()
     }
+});
+
+
+/**
+ * @Events
+ * App communications from rendered process
+ */
+
+ipcMain.on('child-process-pid', function(event, arg) {
+    console.log(`Storing child process with PID ${arg}`);
+    childsPID.push(arg);
 });

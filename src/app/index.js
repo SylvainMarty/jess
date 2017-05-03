@@ -1,7 +1,6 @@
 const Vue = require('vue/dist/vue.common');
 const path = require('path');
-const shell = require('electron').shell;
-// const remote = require('electron').remote;
+const {ipcRenderer, shell} = require('electron');
 const Logs = require("../modules/Logs.js");
 var Jekyll = require("../modules/Jekyll.js");
 
@@ -41,6 +40,9 @@ function startJekyllFn() {
         this.logs = [];
 
         this.states.serverStarted = true;
+
+        // Sending child process PID to main process (main.js)
+        ipcRenderer.send('child-process-pid', jekyll.process.pid);
 
         this.logs.push(Logs.info('Starting Jekyll server.'));
 

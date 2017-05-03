@@ -77,7 +77,9 @@ Jekyll.prototype.serve = function(directory) {
 }
 
 Jekyll.prototype.stop = function() {
-    this.process.kill('SIGINT');
+    if(this.process) {
+        this.process.kill('SIGINT');
+    }
 }
 
 /**
