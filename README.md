@@ -8,8 +8,7 @@ It's a lightweight Electron App which permit to run a Jekyll Server without inst
 
 ```
 npm install
-chmod +x ./download-binaries.sh
-./download-binaries.sh
+bash download-binaries.sh
 npm run start
 ```
 The window will appear. Wait for the end of the installation.
