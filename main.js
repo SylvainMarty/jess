@@ -10,7 +10,7 @@ const properties = require("./src/properties.json");
 var app = electron.app;
 // Module to create native browser window.
 var BrowserWindow = electron.BrowserWindow;
-let childsPID = [];
+let jekyllPID = null;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -62,18 +62,14 @@ app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
+    app.quit()
 });
 
 app.on('before-quit', function () {
-    childsPID.forEach(function(pid) {
-        console.log(`Killing process with PID ${pid}`);
-        process.kill(pid, 'SIGINT');
-    });
+    if(jekyllPID != null) {
+        console.log(`Killing process with PID ${jekyllPID}`);
+        process.kill(jekyllPID, 'SIGINT');
+    }
 });
 
 app.on('activate', function () {
@@ -92,5 +88,5 @@ app.on('activate', function () {
 
 ipcMain.on('child-process-pid', function(event, arg) {
     console.log(`Storing child process with PID ${arg}`);
-    childsPID.push(arg);
+    jekyllPID = arg;
 });
