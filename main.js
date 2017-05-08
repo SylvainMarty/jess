@@ -21,6 +21,8 @@ global.os = {
 };
 
 function createWindow () {
+    global.lang = app.getLocale();
+
     // Create the browser window.
     global.mainWindow = new BrowserWindow({width: 800, height: 600});
     var startFile = path.join(__dirname, 'index.html');

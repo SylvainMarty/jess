@@ -1,6 +1,5 @@
 const Vue = require('vue/dist/vue.common');
 const fs = require("fs");
-const path = require('path');
 const properties = require("../properties.json");
 var Jekyll = require("../modules/Jekyll.js");
 

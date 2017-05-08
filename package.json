@@ -23,6 +23,9 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
+    "i18next": "^8.1.0",
+    "i18next-browser-languagedetector": "^1.0.1",
+    "i18next-sync-fs-backend": "^0.1.0",
     "jquery": "^1.12.4",
     "node-sass": "^4.5.2",
     "rimraf": "^2.6.1",

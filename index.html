@@ -14,13 +14,13 @@
             <h1>J.E.S.S.</h1>
 
             <p class="help-block">
-                Welcome on J.E.S.S., the Jekyll Embedded Simple Server !<br>
-                <a href="config.html">Configuration</a>
+                {{ $tr("Welcome on J.E.S.S., the Jekyll Embedded Simple Server !") }}<br>
+                <a href="config.html">{{ $tr("Configuration") }}</a>
             </p>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-                    <a href="#" @click="goToBrowser('http://localhost:4000')" v-if="states.serverStarted" style="margin-top: 30px;" class="btn btn-info btn-block"><i class="fa fa-open"></i>&nbsp; Open in browser</a>
+                    <a href="#" @click="goToBrowser('http://localhost:4000')" v-if="states.serverStarted" style="margin-top: 30px;" class="btn btn-info btn-block"><i class="fa fa-open"></i>&nbsp; {{ $tr("Open in browser") }}</a>
                 </div>
             </div>
 
@@ -31,15 +31,15 @@
                             <div class="form-group" v-if="!states.serverStarted">
                                 <label for="jekyll-directory-input"></label>
                                 <input class="form-control" type="file" webkitdirectory directory @change="changeServerDirectory"/>
-                                <p class="help-block">Select the root directory of your Jekyll project.</p>
+                                <p class="help-block">{{ $tr("Select the root directory of your Jekyll project.") }}</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-                            <button v-if="!states.serverStarted" @click="startServer()" title="Start Jekyll" class="btn btn-success btn-block"><i class="fa fa-power-off"></i>&nbsp; Start Jekyll</button>
-                            <button v-if="states.serverStarted" @click="stopServer()" title="Stop Jekyll" class="btn btn-danger btn-block"><i class="fa fa-power-off"></i>&nbsp; Stop Jekyll</button>
+                            <button v-if="!states.serverStarted" @click="startServer()" title="Start Jekyll" class="btn btn-success btn-block"><i class="fa fa-power-off"></i>&nbsp; {{ $tr("Start Jekyll") }}</button>
+                            <button v-if="states.serverStarted" @click="stopServer()" title="Stop Jekyll" class="btn btn-danger btn-block"><i class="fa fa-power-off"></i>&nbsp; {{ $tr("Stop Jekyll") }}</button>
                         </div>
                     </div>
                 </div>
