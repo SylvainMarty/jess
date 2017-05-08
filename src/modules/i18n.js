@@ -27,9 +27,9 @@ function install(Vue) {
         initImmediate: false,
         backend: {
             // path where resources get loaded from
-            loadPath: path.join(__dirname,'../locales/{{lng}}/{{ns}}.json'),
+            loadPath: path.join(__dirname,'../locales/{{lng}}.{{ns}}.json'),
 			/*// path to post missing resources
-			addPath: path.join(__dirname,'../locales/{{lng}}/{{ns}}.missing.json')
+			addPath: path.join(__dirname,'../locales/{{lng}}.{{ns}}.missing.json')
 			// jsonIndent to use when storing json files
       		jsonIndent: 4*/
         }
