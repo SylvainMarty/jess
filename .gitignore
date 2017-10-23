@@ -1,4 +1,5 @@
-node_modules
+# JESS #
+########
 embedded/*
 !embedded/.gitkeep
 packaging/*/*.tar.gz
@@ -6,6 +7,19 @@ packaging/*/*.tar.gz
 !packaging/*/.gitkeep
 compiled/*
 !compiled/.gitkeep
+
+# electron-vue #
+################
+dist/electron/*
+dist/web/*
+build/*
+!build/icons
+coverage
+node_modules/
+npm-debug.log
+npm-debug.log.*
+thumbs.db
+!.gitkeep
 
 # OS generated files #
 ######################

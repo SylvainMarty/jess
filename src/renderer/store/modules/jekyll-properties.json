@@ -1,0 +1,11 @@
+{
+    "packagePath": "packaging/jekyll/traveling-jekyll-{os}.tar.gz",
+    "binRootPath": "embedded/jekyll",
+    "binExecRootPath": "embedded/jekyll/traveling-jekyll-{os}",
+    "binExecPath": "embedded/jekyll/{binaryName}/jekyll",
+    "supportedOs": [
+        "linux-x86",
+        "linux-x86_64",
+        "osx"
+    ]
+}
